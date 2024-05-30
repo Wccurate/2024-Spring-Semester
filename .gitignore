@@ -2,6 +2,8 @@ ComputerVision/
 CompilerPrinciples/EX/
 ComputerArchitecture/Seminar/
 ComputerArchitecture/Ex/EX4/
+**/spark-2.1.0*
+**/hadoop-2.7.0*
 # LaTeX intermediate and output files
 *.aux
 *.bbl
