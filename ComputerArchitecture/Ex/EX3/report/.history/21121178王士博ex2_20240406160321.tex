@@ -1,0 +1,230 @@
+\documentclass{article}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\usepackage{ifthen}
+\usepackage[UTF8]{ctex}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\geometry{a4paper}
+\usepackage{tikz}
+\usetikzlibrary{chains}
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\usepackage{appendix} 
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{diagbox}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{pdflscape}
+\usepackage{soul}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage[most]{tcolorbox}
+% \tcbuselibrary{breakable}
+\newtcolorbox{mycolorbox}[1][]{
+  sharp corners,
+  colback=white, 
+  colframe=black, 
+  coltext=blue, 
+  boxsep=5pt, 
+  left=2pt, 
+  right=2pt, 
+  top=1pt, 
+  bottom=1pt,
+  breakable,
+  #1 
+}
+\usepackage{subcaption}
+
+% 通用设置
+\lstset{
+    %backgroundcolor=\color{white},
+    backgroundcolor=\color{gray!20},
+    basicstyle=\ttfamily,
+    commentstyle=\color{darkgray}\ttfamily,
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=10pt,
+    tabsize=4,
+    showspaces=false,
+    showtabs=false,
+    frame=single,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)},
+    xleftmargin=\parindent,
+    xrightmargin=\parindent,
+}
+
+% Dockerfile 样式
+\lstdefinestyle{dockerstyle}{
+    language=bash,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={FROM, RUN, CMD, LABEL, EXPOSE, ENV, ADD, COPY, ENTRYPOINT, VOLUME, USER, WORKDIR, ARG, ONBUILD},
+}
+
+% Python 样式
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={import, from, as, def, return, class, self, if, elif, else, while, for, try, except, with},
+}
+\lstdefinestyle{cstyle}{
+    language=C,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={size_t, printf}, % 只有在需要额外关键字时才取消注释并添加
+}
+% Bash 样式
+\lstdefinestyle{bashstyle}{
+    language=bash,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={if, then, else, fi, for, in, do, done, echo, exit, return, function},
+    commentstyle=\color{green}\ttfamily,
+}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  
+\renewcommand{\algorithmicensure}{\textbf{Output:}}  
+\usepackage{amsmath}
+\usepackage{amsthm}
+\DeclareMathOperator{\sigm}{sigm}
+\usepackage{graphicx}
+\usepackage{float}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\usepackage{amssymb}
+\usepackage{booktabs} 
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun} 
+\title{\Huge OpenMP并行编程实验报告}
+\author{21121178 王士博}
+\begin{document}
+\maketitle
+\section{实验环境}
+\begin{itemize}
+    \item 操作系统：macOS；
+    \item 编程语言：C语言；
+    \item 编译器：gcc-13（clang-13）；
+    \item 编辑器：Clion。
+\end{itemize}
+\section{实验目的}
+\begin{itemize}
+    \item 并行计算的性能评估与分析;
+    \item 并行计算在复杂运算中的加速效果;
+    \item 并行编程技术的实际应用效果评价;
+\end{itemize}
+\section{实验步骤}
+\begin{enumerate}
+    \item 并行计算的性能评估与分析： 通过HelloWorld程序的串行执行与
+    并行执行（不设置线程数以及设置8个线程）的对比分析，旨在揭示并行计算在不同线程
+    配置下的性能变化及其对程序执行时间的影响。此实验目的在于评估并行计算相较于串行计
+    算在处理简单任务时的效率提升，并分析线程数对执行效率的具体影响，以及探索默认线程
+    配置下的系统表现。
+    \item 并行计算在复杂运算中的加速效果： 通过编程实现大规模向量的矩阵乘法并
+    行计算，并在不同的线程数（1、2、4、8、16、32）下评估执行时间，以及在不同操作系
+    统环境（Windows, Linux及虚拟机下的Linux系统）中比较加速比。该实验目的在于深入分
+    析并行计算在处理复杂数学运算时的性能提升，以及线程数与运行时间之间的关系，进一步理解
+    操作系统环境对并行计算效率的影响。
+    \item 并行编程技术的实际应用效果评价： 通过OpenMP实例估算Pi值的实验，调试并比较串行
+    算法与四种不同的并行程序的加速比，检查并行编程是否有效提高计算效率。此外，探索其他实验
+    内容，如私有变量和共有变量的性能对比，分析并行化的额外负担、线程负载均衡问题及线程同步
+    问题。该实验目的旨在通过实际案例测试并行编程技术的应用效果，特别是在精确计算和资源调度
+    方面的表现，为并行计算在科学研究和工程应用中的实践提供理论依据和技术支持。
+    \item 根据上面对OpenMP的学习使用OpenMP进行更多的实验来加深印象和理解。
+\end{enumerate}
+\section{编程及结果分析}
+\subsection{}
+\subsection{}
+\subsection{}
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{cccc}
+    \toprule
+    \textbf{Thread} & \textbf{Matrix Size} & \textbf{MacOS} & \textbf{Windows} \\
+    \midrule
+    \multirow{3}{*}{1} & 1000 & MacOS Time 1 & 2.47 \\
+                       & 2000 & MacOS Time 2 & 32.25 \\
+                       & 3000 & MacOS Time 3 & 143.59 \\
+    \midrule
+    \multirow{3}{*}{2} & 1000 & MacOS Time 4 & 1.39 \\
+                       & 2000 & MacOS Time 5 & 16.50 \\
+                       & 3000 & MacOS Time 6 & 73.27 \\
+    \midrule
+    \multirow{3}{*}{4} & 1000 & MacOS Time 7 & Windows Time 7 \\
+                       & 2000 & MacOS Time 8 & Windows Time 8 \\
+                       & 3000 & MacOS Time 9 & Windows Time 9 \\
+    % Continue for more thread counts as needed
+    \bottomrule
+    \end{tabular}
+    \caption{Performance comparison of matrix sizes across different thread counts on MacOS and Windows.}
+    \end{table}
+\subsection{}
+\subsection{}
+\section{实验感想}
+\newpage
+\appendix
+\section{附录}
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+    \begin{lstlisting}[style=cstyle,caption={串行Helloworld}]
+#include"omp.h"
+#include"stdio.h"
+int main(){
+    int nthreads,tid;
+    tid=omp_get_thread_num();
+    printf("Hello World from OMP thread %d\n",tid);
+    if(tid==0)
+    {
+        nthreads=omp_get_num_threads();
+        printf("Number of threads is %d\n",nthreads);
+    }
+}
+    \end{lstlisting}
+\end{minipage}
+\hfill 
+\begin{minipage}[t]{0.45\textwidth}
+    \begin{lstlisting}[style=cstyle,caption={不设线程并行Helloworld}]
+#include"omp.h"
+#include"stdio.h"
+int main(){
+    int nthreads,tid;
+    #pragma omp parallel private(nthreads,tid)
+    {
+        tid=omp_get_thread_num();
+        printf("Hello World from OMP thread %d\n",tid);
+        if(tid==0)
+        {
+            nthreads=omp_get_num_threads();
+            printf("Number of threads is %d\n",nthreads);
+        }
+    }
+}
+    \end{lstlisting}
+\end{minipage}
+\begin{lstlisting}[style=cstyle,caption={设置10个线程并行Helloworld}]
+#include"omp.h"
+#include"stdio.h"
+int main(){
+    int nthreads,tid;
+    omp_set_num_threads(10);
+ #pragma omp parallel private(nthreads,tid)
+    {
+        tid=omp_get_thread_num();
+        printf("Hello World from OMP thread %d\n",tid);
+        if(tid==0)
+        {
+            nthreads=omp_get_num_threads();
+            printf("Number of threads is %d\n",nthreads);
+        }
+    }
+}
+\end{lstlisting}
+\end{document}

@@ -1,0 +1,1153 @@
+Last login: Mon Mar 18 10:28:18 on console
+(base) wangshibo@MacBook ~ % ssh -p 22 ubuntu@43.129.187.254
+kex_exchange_identification: Connection closed by remote host
+Connection closed by 43.129.187.254 port 22
+(base) wangshibo@MacBook ~ % ssh -p 22 ubuntu@43.129.187.254
+kex_exchange_identification: Connection closed by remote host
+Connection closed by 43.129.187.254 port 22
+(base) wangshibo@MacBook ~ % ping 43.129.187.254
+PING 43.129.187.254 (43.129.187.254): 56 data bytes
+64 bytes from 43.129.187.254: icmp_seq=0 ttl=64 time=0.542 ms
+64 bytes from 43.129.187.254: icmp_seq=1 ttl=64 time=0.265 ms
+64 bytes from 43.129.187.254: icmp_seq=2 ttl=64 time=0.555 ms
+64 bytes from 43.129.187.254: icmp_seq=3 ttl=64 time=0.553 ms
+64 bytes from 43.129.187.254: icmp_seq=4 ttl=64 time=0.614 ms
+64 bytes from 43.129.187.254: icmp_seq=5 ttl=64 time=0.579 ms
+64 bytes from 43.129.187.254: icmp_seq=6 ttl=64 time=0.606 ms
+64 bytes from 43.129.187.254: icmp_seq=7 ttl=64 time=0.583 ms
+64 bytes from 43.129.187.254: icmp_seq=8 ttl=64 time=0.579 ms
+^C
+--- 43.129.187.254 ping statistics ---
+9 packets transmitted, 9 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.265/0.542/0.614/0.100 ms
+(base) wangshibo@MacBook ~ % 
+(base) wangshibo@MacBook ~ % ssh ubuntu@43.129.187.254 
+kex_exchange_identification: Connection closed by remote host
+Connection closed by 43.129.187.254 port 22
+(base) wangshibo@MacBook ~ % ssh ubuntu@43.129.215.162
+The authenticity of host '43.129.215.162 (43.129.215.162)' can't be established.
+ED25519 key fingerprint is SHA256:ktyZnMXa1B3fxEsNi8vlqsQ2U3iAKuQZ7hk+5ZaaCBc.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '43.129.215.162' (ED25519) to the list of known hosts.
+ubuntu@43.129.215.162's password: 
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 10:18:19 AM CST
+
+  System load:  0.46              Processes:             130
+  Usage of /:   7.9% of 49.11GB   Users logged in:       0
+  Memory usage: 8%                IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@VM-0-5-ubuntu:~$ hostname
+VM-0-5-ubuntu
+ubuntu@VM-0-5-ubuntu:~$ whoami
+ubuntu
+ubuntu@VM-0-5-ubuntu:~$ vim
+ubuntu@VM-0-5-ubuntu:~$ ping baidu.com
+PING baidu.com (39.156.66.10) 56(84) bytes of data.
+64 bytes from 39.156.66.10 (39.156.66.10): icmp_seq=1 ttl=46 time=49.1 ms
+64 bytes from 39.156.66.10 (39.156.66.10): icmp_seq=2 ttl=46 time=49.0 ms
+64 bytes from 39.156.66.10 (39.156.66.10): icmp_seq=3 ttl=46 time=49.1 ms
+^C
+--- baidu.com ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 49.012/49.071/49.109/0.042 ms
+ubuntu@VM-0-5-ubuntu:~$ ssh-keygen -t rsa -C "wccurate7a7@gmail.com" -b 4096
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/ubuntu/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/ubuntu/.ssh/id_rsa
+Your public key has been saved in /home/ubuntu/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:gyq0jOia3Tij4uff2mpK91uLTS84vqSVhgNMMmcZp6o wccurate7a7@gmail.com
+The key's randomart image is:
++---[RSA 4096]----+
+|   . .           |
+|    =            |
+| o *             |
+|  O    .         |
+| ..o  . S        |
+|o+ .... ..       |
+|E +..+ =.o       |
+|oo+=..Xo=.o      |
+|B+====+O+o..     |
++----[SHA256]-----+
+ubuntu@VM-0-5-ubuntu:~$ cd /homne/ubuntu/.ssh
+-bash: cd: /homne/ubuntu/.ssh: No such file or directory
+ubuntu@VM-0-5-ubuntu:~$ cd /home/ubuntu/.ssh
+ubuntu@VM-0-5-ubuntu:~/.ssh$ ls
+authorized_keys  id_rsa  id_rsa.pub
+ubuntu@VM-0-5-ubuntu:~/.ssh$ ssh -i /home/ubuntu/.ssh/id_rsa ubuntu@localhost
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:KDU91sTsOLqBZQhzcNi7RdMFntLKucwNsnimBc2pdAI.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.
+ubuntu@localhost's password: 
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 10:27:42 AM CST
+
+  System load:  0.0               Processes:             121
+  Usage of /:   7.9% of 49.11GB   Users logged in:       1
+  Memory usage: 8%                IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 10:18:20 2024 from 101.90.151.27
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@VM-0-5-ubuntu:~$ exit
+logout
+Connection to localhost closed.
+ubuntu@VM-0-5-ubuntu:~/.ssh$ ssh -i /home/ubuntu/.ssh/id_rsa.pub ubuntu@localhost
+ubuntu@localhost's password: 
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 10:28:03 AM CST
+
+  System load:  0.0               Processes:             124
+  Usage of /:   7.9% of 49.11GB   Users logged in:       1
+  Memory usage: 9%                IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 10:27:42 2024 from 127.0.0.1
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@VM-0-5-ubuntu:~$ exit
+logout
+Connection to localhost closed.
+ubuntu@VM-0-5-ubuntu:~/.ssh$ cat id_rsa.pub >> authorized_keys
+ubuntu@VM-0-5-ubuntu:~/.ssh$ ssh ubuntu@localhost
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 10:31:13 AM CST
+
+  System load:  0.08              Processes:             119
+  Usage of /:   8.0% of 49.11GB   Users logged in:       1
+  Memory usage: 8%                IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 10:28:03 2024 from 127.0.0.1
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@VM-0-5-ubuntu:~$ exit
+logout
+Connection to localhost closed.
+ubuntu@VM-0-5-ubuntu:~/.ssh$ cd ../
+ubuntu@VM-0-5-ubuntu:~$ ls
+ubuntu@VM-0-5-ubuntu:~$ ls
+ubuntu@VM-0-5-ubuntu:~$ pwd
+/home/ubuntu
+ubuntu@VM-0-5-ubuntu:~$ ls
+ubuntu@VM-0-5-ubuntu:~$ mkdir clientKeys
+ubuntu@VM-0-5-ubuntu:~$ cd /home/ubuntu/.ssh
+ubuntu@VM-0-5-ubuntu:~/.ssh$ ls
+authorized_keys  id_rsa  id_rsa.pub  known_hosts
+ubuntu@VM-0-5-ubuntu:~/.ssh$ re -ef
+
+Command 're' not found, but can be installed with:
+
+sudo apt install re
+
+ubuntu@VM-0-5-ubuntu:~/.ssh$ rm -ef
+rm: invalid option -- 'e'
+Try 'rm --help' for more information.
+ubuntu@VM-0-5-ubuntu:~/.ssh$ rm *
+ubuntu@VM-0-5-ubuntu:~/.ssh$ ls
+ubuntu@VM-0-5-ubuntu:~/.ssh$ ls
+authorized_keys  id_rsa  id_rsa.pub
+ubuntu@VM-0-5-ubuntu:~/.ssh$ ssh ubuntu@localhost
+The authenticity of host 'localhost (127.0.0.1)' can't be established.
+ECDSA key fingerprint is SHA256:KDU91sTsOLqBZQhzcNi7RdMFntLKucwNsnimBc2pdAI.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 10:40:02 AM CST
+
+  System load:  0.0               Processes:             115
+  Usage of /:   8.0% of 49.11GB   Users logged in:       1
+  Memory usage: 8%                IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 10:31:13 2024 from 127.0.0.1
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@VM-0-5-ubuntu:~$ exit
+logout
+Connection to localhost closed.
+ubuntu@VM-0-5-ubuntu:~/.ssh$ ssh ubuntu@localhost
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 10:42:10 AM CST
+
+  System load:  0.0               Processes:             123
+  Usage of /:   8.0% of 49.11GB   Users logged in:       1
+  Memory usage: 9%                IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 10:40:02 2024 from 127.0.0.1
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@VM-0-5-ubuntu:~$ exit
+logout
+Connection to localhost closed.
+ubuntu@VM-0-5-ubuntu:~/.ssh$ ls
+authorized_keys  id_rsa  id_rsa.pub  known_hosts
+ubuntu@VM-0-5-ubuntu:~/.ssh$ cat known-hosts
+cat: known-hosts: No such file or directory
+ubuntu@VM-0-5-ubuntu:~/.ssh$ cat known_hosts
+|1|FdEZnUPJXXxeDnkilhXIUcGJuIE=|X9F+Dw3kV5YX5HKXMaQltO+PyuM= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMMF1ytal5TwRZSWEihyEJrueKef3KUi8DWWEz0l9z8PBfIPtCuYMy+hrxSUG+3AfNZE0YszKGPsMIY1u0eCyj0=
+ubuntu@VM-0-5-ubuntu:~/.ssh$ ssh ubuntu@43.128.46.31
+The authenticity of host '43.128.46.31 (43.128.46.31)' can't be established.
+ECDSA key fingerprint is SHA256:6wEtPfsQtSQ8ctqeCvi05eHABO7ZpfUlDjGA8F59oV0.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '43.128.46.31' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 10:43:40 AM CST
+
+  System load:  0.04              Processes:             117
+  Usage of /:   8.0% of 49.11GB   Users logged in:       1
+  Memory usage: 8%                IPv4 address for eth0: 172.19.0.16
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 10:33:52 2024 from 127.0.0.1
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@VM-0-16-ubuntu:~$ exit
+logout
+Connection to 43.128.46.31 closed.
+ubuntu@VM-0-5-ubuntu:~/.ssh$ Connection to 43.129.215.162 closed by remote host.
+Connection to 43.129.215.162 closed.
+(base) wangshibo@MacBook ~ % ssh 43.129.215.162
+wangshibo@43.129.215.162's password: 
+Permission denied, please try again.
+wangshibo@43.129.215.162's password: 
+Permission denied, please try again.
+wangshibo@43.129.215.162's password: 
+
+(base) wangshibo@MacBook ~ % ssh ubuntu@43.129.215.162
+ubuntu@43.129.215.162's password: 
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 10:56:40 AM CST
+
+  System load:  0.08              Processes:             126
+  Usage of /:   8.0% of 49.11GB   Users logged in:       0
+  Memory usage: 9%                IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 10:42:11 2024 from 127.0.0.1
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@VM-0-5-ubuntu:~$ cd /etc
+ubuntu@VM-0-5-ubuntu:/etc$ ls
+NetworkManager                 groff            mime.types               rmt
+PackageKit                     group            mke2fs.conf              rpc
+X11                            group-           modprobe.d               rsyslog.conf
+acpi                           grub.d           modules                  rsyslog.d
+adduser.conf                   gshadow          modules-load.d           screenrc
+alternatives                   gshadow-         mtab                     security
+apache2                        gss              multipath                selinux
+apparmor                       hdparm.conf      multipath.conf           sensors.d
+apparmor.d                     host.conf        nanorc                   sensors3.conf
+apport                         hostname         nbdtab                   services
+apt                            hosts            netconfig                sgml
+at.deny                        hosts.allow      netplan                  shadow
+bash.bashrc                    hosts.deny       network                  shadow-
+bash_completion                idmapd.conf      networkd-dispatcher      shells
+bash_completion.d              img_version      networks                 skel
+bind                           init             newt                     sos
+bindresvport.blacklist         init.d           nsswitch.conf            sos.conf
+binfmt.d                       initramfs-tools  ntp.conf                 ssh
+byobu                          inputrc          ntp.conf.dist            ssl
+ca-certificates                insserv.conf.d   opt                      subgid
+ca-certificates.conf           iproute2         os-release               subgid-
+ca-certificates.conf.dpkg-old  iscsi            overlayroot.conf         subuid
+calendar                       issue            pam.conf                 subuid-
+cloud                          issue.net        pam.d                    sudoers
+console-setup                  kernel           papersize                sudoers.d
+cron.d                         landscape        passwd                   sysctl.conf
+cron.daily                     ld.so.cache      passwd-                  sysctl.d
+cron.hourly                    ld.so.conf       perl                     systemd
+cron.monthly                   ld.so.conf.d     pki                      terminfo
+cron.weekly                    ldap             pm                       texmf
+crontab                        legal            polkit-1                 thermald
+cryptsetup-initramfs           libaudit.conf    pollinate                timezone
+crypttab                       libnl-3          popularity-contest.conf  tmpfiles.d
+dbus-1                         libpaper.d       ppp                      ubuntu-advantage
+dconf                          lighttpd         profile                  ucf.conf
+debconf.conf                   locale.alias     profile.d                udev
+debian_version                 locale.gen       protocols                ufw
+default                        localtime        python                   update-manager
+deluser.conf                   logcheck         python2.7                update-motd.d
+depmod.d                       login.defs       python3                  update-notifier
+dhcp                           logrotate.conf   python3.8                uuid
+dpkg                           logrotate.d      qcloudzone               vim
+dracut.conf                    lsb-release      rc.local                 vmware-tools
+dracut.conf.d                  ltrace.conf      rc0.d                    vtrgb
+e2scrub.conf                   lvm              rc1.d                    vulkan
+emacs                          lynx             rc2.d                    wgetrc
+environment                    machine-id       rc3.d                    xattr.conf
+ethertypes                     machine-info     rc4.d                    xdg
+fonts                          magic            rc5.d                    xml
+fstab                          magic.mime       rc6.d                    zlibc.conf
+fuse.conf                      mailcap          rcS.d                    zsh_command_not_found
+fwupd                          mailcap.order    request-key.conf
+gai.conf                       manpath.config   request-key.d
+ghostscript                    mdadm            resolv.conf
+ubuntu@VM-0-5-ubuntu:/etc$ vim hostname
+ubuntu@VM-0-5-ubuntu:/etc$ sudo vim hostname
+ubuntu@VM-0-5-ubuntu:/etc$ sudo vim hosts
+ubuntu@VM-0-5-ubuntu:/etc$ rebbot
+
+Command 'rebbot' not found, did you mean:
+
+  command 'reboot' from deb systemd-sysv (245.4-4ubuntu3.22)
+  command 'reboot' from deb molly-guard (0.7.2)
+
+Try: sudo apt install <deb name>
+
+ubuntu@VM-0-5-ubuntu:/etc$ sudo reboot
+Connection to 43.129.215.162 closed by remote host.
+Connection to 43.129.215.162 closed.
+(base) wangshibo@MacBook ~ % ssh ubuntu@43.129.215.162
+ubuntu@43.129.215.162's password: 
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 11:07:55 AM CST
+
+  System load:  0.63              Processes:             130
+  Usage of /:   7.9% of 49.11GB   Users logged in:       0
+  Memory usage: 6%                IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 10:56:41 2024 from 101.90.151.27
+ubuntu@server:~$ hostname
+server
+ubuntu@server:~$ ssh ubuntu@client
+The authenticity of host 'client (172.19.0.16)' can't be established.
+ECDSA key fingerprint is SHA256:6wEtPfsQtSQ8ctqeCvi05eHABO7ZpfUlDjGA8F59oV0.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'client,172.19.0.16' (ECDSA) to the list of known hosts.
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 11:09:01 AM CST
+
+  System load:  0.17              Processes:             128
+  Usage of /:   7.9% of 49.11GB   Users logged in:       1
+  Memory usage: 6%                IPv4 address for eth0: 172.19.0.16
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 11:06:59 2024 from 101.90.151.27
+ubuntu@client:~$ exit
+logout
+Connection to client closed.
+ubuntu@server:~$ sudo apt-get install mysql-server
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  crash dblatex dblatex-doc dh-strip-nondeterminism docbook-dsssl docbook-utils docbook-xml docbook-xsl
+  dwz eatmydata fonts-gfs-baskerville fonts-gfs-porson kdump-tools kexec-tools libalgorithm-c3-perl
+  libapache-pom-java libarchive-cpio-perl libarchive-zip-perl libb-hooks-endofscope-perl
+  libb-hooks-op-check-perl libclass-c3-perl libclass-c3-xs-perl libclass-data-inheritable-perl
+  libclass-method-modifiers-perl libclass-xsaccessor-perl libcommons-logging-java libcommons-parent-java
+  libdata-optlist-perl libdatrie1 libdebhelper-perl libdevel-callchecker-perl libdevel-caller-perl
+  libdevel-globaldestruction-perl libdevel-lexalias-perl libdevel-stacktrace-perl
+  libdist-checkconflicts-perl libdynaloader-functions-perl libeatmydata1 libemail-date-format-perl
+  libeval-closure-perl libexception-class-perl libfile-homedir-perl libfile-stripnondeterminism-perl
+  libfile-which-perl libfontbox-java libipc-shareable-perl liblog-dispatch-perl liblog-log4perl-perl
+  libltdl-dev libmime-charset-perl libmime-lite-perl libmime-types-perl libmodule-implementation-perl
+  libmodule-runtime-perl libmro-compat-perl libnamespace-autoclean-perl libnamespace-clean-perl libosp5
+  libostyle1c2 libpackage-stash-perl libpackage-stash-xs-perl libpadwalker-perl libparams-classify-perl
+  libparams-util-perl libparams-validationcompiler-perl libpdfbox-java libreadonly-perl libref-util-perl
+  libref-util-xs-perl librole-tiny-perl libsgmls-perl libsnappy1v5 libsombok3 libspecio-perl
+  libsub-exporter-perl libsub-exporter-progressive-perl libsub-identify-perl libsub-install-perl
+  libsub-override-perl libsub-quote-perl libtcl8.6 libthai-data libthai0 libtk8.6
+  libunicode-linebreak-perl libvariable-magic-perl libxss1 libxstring-perl libyaml-tiny-perl makedumpfile
+  openjade opensp preview-latex-style python3-importlib-metadata python3-json-pointer python3-jsonpatch
+  python3-jsonschema python3-more-itertools python3-pyrsistent python3-zipp sgml-base sgml-data sgmlspl
+  squashfs-tools tcl tcl8.6 teckit tex-gyre texlive texlive-bibtex-extra texlive-extra-utils
+  texlive-fonts-recommended texlive-formats-extra texlive-lang-greek texlive-latex-base
+  texlive-latex-extra texlive-latex-recommended texlive-pictures texlive-plain-generic texlive-science
+  texlive-xetex tipa tk tk8.6 xml-core xmlto
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  libcgi-fast-perl libcgi-pm-perl libfcgi-perl libhtml-template-perl libmecab2 mecab-ipadic
+  mecab-ipadic-utf8 mecab-utils mysql-client-8.0 mysql-client-core-8.0 mysql-common mysql-server-8.0
+  mysql-server-core-8.0
+Suggested packages:
+  libipc-sharedcache-perl mailx tinyca
+The following NEW packages will be installed:
+  libcgi-fast-perl libcgi-pm-perl libfcgi-perl libhtml-template-perl libmecab2 mecab-ipadic
+  mecab-ipadic-utf8 mecab-utils mysql-client-8.0 mysql-client-core-8.0 mysql-common mysql-server
+  mysql-server-8.0 mysql-server-core-8.0
+0 upgraded, 14 newly installed, 0 to remove and 172 not upgraded.
+Need to get 36.3 MB of archives.
+After this operation, 317 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://mirrors.tencentyun.com/ubuntu focal/main amd64 mysql-common all 5.8+1.0.5ubuntu2 [7496 B]
+Get:2 http://mirrors.tencentyun.com/ubuntu focal-security/main amd64 mysql-client-core-8.0 amd64 8.0.36-0ubuntu0.20.04.1 [5084 kB]
+Get:3 http://mirrors.tencentyun.com/ubuntu focal-security/main amd64 mysql-client-8.0 amd64 8.0.36-0ubuntu0.20.04.1 [22.0 kB]
+Get:4 http://mirrors.tencentyun.com/ubuntu focal/main amd64 libmecab2 amd64 0.996-10build1 [233 kB]
+Get:5 http://mirrors.tencentyun.com/ubuntu focal-security/main amd64 mysql-server-core-8.0 amd64 8.0.36-0ubuntu0.20.04.1 [22.7 MB]
+Get:6 http://mirrors.tencentyun.com/ubuntu focal-security/main amd64 mysql-server-8.0 amd64 8.0.36-0ubuntu0.20.04.1 [1326 kB]
+Get:7 http://mirrors.tencentyun.com/ubuntu focal/main amd64 libcgi-pm-perl all 4.46-1 [186 kB]
+Get:8 http://mirrors.tencentyun.com/ubuntu focal/main amd64 libfcgi-perl amd64 0.79-1 [33.1 kB]
+Get:9 http://mirrors.tencentyun.com/ubuntu focal/main amd64 libcgi-fast-perl all 1:2.15-1 [10.5 kB]
+Get:10 http://mirrors.tencentyun.com/ubuntu focal/main amd64 libhtml-template-perl all 2.97-1 [59.0 kB]
+Get:11 http://mirrors.tencentyun.com/ubuntu focal/main amd64 mecab-utils amd64 0.996-10build1 [4912 B]
+Get:12 http://mirrors.tencentyun.com/ubuntu focal/main amd64 mecab-ipadic all 2.7.0-20070801+main-2.1 [6714 kB]
+Get:13 http://mirrors.tencentyun.com/ubuntu focal/main amd64 mecab-ipadic-utf8 all 2.7.0-20070801+main-2.1 [4380 B]
+Get:14 http://mirrors.tencentyun.com/ubuntu focal-security/main amd64 mysql-server all 8.0.36-0ubuntu0.20.04.1 [9484 B]
+Fetched 36.3 MB in 4s (8633 kB/s)       
+Preconfiguring packages ...
+Selecting previously unselected package mysql-common.
+(Reading database ... 136710 files and directories currently installed.)
+Preparing to unpack .../mysql-common_5.8+1.0.5ubuntu2_all.deb ...
+Unpacking mysql-common (5.8+1.0.5ubuntu2) ...
+Selecting previously unselected package mysql-client-core-8.0.
+Preparing to unpack .../mysql-client-core-8.0_8.0.36-0ubuntu0.20.04.1_amd64.deb ...
+Unpacking mysql-client-core-8.0 (8.0.36-0ubuntu0.20.04.1) ...
+Selecting previously unselected package mysql-client-8.0.
+Preparing to unpack .../mysql-client-8.0_8.0.36-0ubuntu0.20.04.1_amd64.deb ...
+Unpacking mysql-client-8.0 (8.0.36-0ubuntu0.20.04.1) ...
+Selecting previously unselected package libmecab2:amd64.
+Preparing to unpack .../libmecab2_0.996-10build1_amd64.deb ...
+Unpacking libmecab2:amd64 (0.996-10build1) ...
+Selecting previously unselected package mysql-server-core-8.0.
+Preparing to unpack .../mysql-server-core-8.0_8.0.36-0ubuntu0.20.04.1_amd64.deb ...
+Unpacking mysql-server-core-8.0 (8.0.36-0ubuntu0.20.04.1) ...
+Setting up mysql-common (5.8+1.0.5ubuntu2) ...
+update-alternatives: using /etc/mysql/my.cnf.fallback to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Selecting previously unselected package mysql-server-8.0.
+(Reading database ... 136916 files and directories currently installed.)
+Preparing to unpack .../0-mysql-server-8.0_8.0.36-0ubuntu0.20.04.1_amd64.deb ...
+Unpacking mysql-server-8.0 (8.0.36-0ubuntu0.20.04.1) ...
+Selecting previously unselected package libcgi-pm-perl.
+Preparing to unpack .../1-libcgi-pm-perl_4.46-1_all.deb ...
+Unpacking libcgi-pm-perl (4.46-1) ...
+Selecting previously unselected package libfcgi-perl.
+Preparing to unpack .../2-libfcgi-perl_0.79-1_amd64.deb ...
+Unpacking libfcgi-perl (0.79-1) ...
+Selecting previously unselected package libcgi-fast-perl.
+Preparing to unpack .../3-libcgi-fast-perl_1%3a2.15-1_all.deb ...
+Unpacking libcgi-fast-perl (1:2.15-1) ...
+Selecting previously unselected package libhtml-template-perl.
+Preparing to unpack .../4-libhtml-template-perl_2.97-1_all.deb ...
+Unpacking libhtml-template-perl (2.97-1) ...
+Selecting previously unselected package mecab-utils.
+Preparing to unpack .../5-mecab-utils_0.996-10build1_amd64.deb ...
+Unpacking mecab-utils (0.996-10build1) ...
+Selecting previously unselected package mecab-ipadic.
+Preparing to unpack .../6-mecab-ipadic_2.7.0-20070801+main-2.1_all.deb ...
+Unpacking mecab-ipadic (2.7.0-20070801+main-2.1) ...
+Selecting previously unselected package mecab-ipadic-utf8.
+Preparing to unpack .../7-mecab-ipadic-utf8_2.7.0-20070801+main-2.1_all.deb ...
+Unpacking mecab-ipadic-utf8 (2.7.0-20070801+main-2.1) ...
+Selecting previously unselected package mysql-server.
+Preparing to unpack .../8-mysql-server_8.0.36-0ubuntu0.20.04.1_all.deb ...
+Unpacking mysql-server (8.0.36-0ubuntu0.20.04.1) ...
+Setting up libmecab2:amd64 (0.996-10build1) ...
+Setting up mysql-client-core-8.0 (8.0.36-0ubuntu0.20.04.1) ...
+Setting up libcgi-pm-perl (4.46-1) ...
+Setting up libhtml-template-perl (2.97-1) ...
+Setting up mecab-utils (0.996-10build1) ...
+Setting up mysql-server-core-8.0 (8.0.36-0ubuntu0.20.04.1) ...
+Setting up mysql-client-8.0 (8.0.36-0ubuntu0.20.04.1) ...
+Setting up libfcgi-perl (0.79-1) ...
+Setting up mysql-server-8.0 (8.0.36-0ubuntu0.20.04.1) ...
+update-alternatives: using /etc/mysql/mysql.cnf to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Renaming removed key_buffer and myisam-recover options (if present)
+mysqld will log errors to /var/log/mysql/error.log
+mysqld is running as pid 2986
+Created symlink /etc/systemd/system/multi-user.target.wants/mysql.service → /lib/systemd/system/mysql.service.
+Setting up mecab-ipadic (2.7.0-20070801+main-2.1) ...
+Compiling IPA dictionary for Mecab.  This takes long time...
+reading /usr/share/mecab/dic/ipadic/unk.def ... 40
+emitting double-array: 100% |###########################################| 
+/usr/share/mecab/dic/ipadic/model.def is not found. skipped.
+reading /usr/share/mecab/dic/ipadic/Filler.csv ... 19
+reading /usr/share/mecab/dic/ipadic/Verb.csv ... 130750
+reading /usr/share/mecab/dic/ipadic/Conjunction.csv ... 171
+reading /usr/share/mecab/dic/ipadic/Noun.name.csv ... 34202
+reading /usr/share/mecab/dic/ipadic/Others.csv ... 2
+reading /usr/share/mecab/dic/ipadic/Auxil.csv ... 199
+reading /usr/share/mecab/dic/ipadic/Noun.place.csv ... 72999
+reading /usr/share/mecab/dic/ipadic/Noun.demonst.csv ... 120
+reading /usr/share/mecab/dic/ipadic/Prefix.csv ... 221
+reading /usr/share/mecab/dic/ipadic/Noun.adverbal.csv ... 795
+reading /usr/share/mecab/dic/ipadic/Noun.others.csv ... 151
+reading /usr/share/mecab/dic/ipadic/Noun.number.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Symbol.csv ... 208
+reading /usr/share/mecab/dic/ipadic/Noun.org.csv ... 16668
+reading /usr/share/mecab/dic/ipadic/Noun.adjv.csv ... 3328
+reading /usr/share/mecab/dic/ipadic/Adnominal.csv ... 135
+reading /usr/share/mecab/dic/ipadic/Suffix.csv ... 1393
+reading /usr/share/mecab/dic/ipadic/Adj.csv ... 27210
+reading /usr/share/mecab/dic/ipadic/Noun.nai.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Noun.proper.csv ... 27328
+reading /usr/share/mecab/dic/ipadic/Interjection.csv ... 252
+reading /usr/share/mecab/dic/ipadic/Postp.csv ... 146
+reading /usr/share/mecab/dic/ipadic/Noun.verbal.csv ... 12146
+reading /usr/share/mecab/dic/ipadic/Noun.csv ... 60477
+reading /usr/share/mecab/dic/ipadic/Postp-col.csv ... 91
+reading /usr/share/mecab/dic/ipadic/Adverb.csv ... 3032
+emitting double-array: 100% |###########################################| 
+reading /usr/share/mecab/dic/ipadic/matrix.def ... 1316x1316
+emitting matrix      : 100% |###########################################| 
+
+done!
+update-alternatives: using /var/lib/mecab/dic/ipadic to provide /var/lib/mecab/dic/debian (mecab-dictionary) in auto mode
+Setting up libcgi-fast-perl (1:2.15-1) ...
+Setting up mecab-ipadic-utf8 (2.7.0-20070801+main-2.1) ...
+Compiling IPA dictionary for Mecab.  This takes long time...
+reading /usr/share/mecab/dic/ipadic/unk.def ... 40
+emitting double-array: 100% |###########################################| 
+/usr/share/mecab/dic/ipadic/model.def is not found. skipped.
+reading /usr/share/mecab/dic/ipadic/Filler.csv ... 19
+reading /usr/share/mecab/dic/ipadic/Verb.csv ... 130750
+reading /usr/share/mecab/dic/ipadic/Conjunction.csv ... 171
+reading /usr/share/mecab/dic/ipadic/Noun.name.csv ... 34202
+reading /usr/share/mecab/dic/ipadic/Others.csv ... 2
+reading /usr/share/mecab/dic/ipadic/Auxil.csv ... 199
+reading /usr/share/mecab/dic/ipadic/Noun.place.csv ... 72999
+reading /usr/share/mecab/dic/ipadic/Noun.demonst.csv ... 120
+reading /usr/share/mecab/dic/ipadic/Prefix.csv ... 221
+reading /usr/share/mecab/dic/ipadic/Noun.adverbal.csv ... 795
+reading /usr/share/mecab/dic/ipadic/Noun.others.csv ... 151
+reading /usr/share/mecab/dic/ipadic/Noun.number.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Symbol.csv ... 208
+reading /usr/share/mecab/dic/ipadic/Noun.org.csv ... 16668
+reading /usr/share/mecab/dic/ipadic/Noun.adjv.csv ... 3328
+reading /usr/share/mecab/dic/ipadic/Adnominal.csv ... 135
+reading /usr/share/mecab/dic/ipadic/Suffix.csv ... 1393
+reading /usr/share/mecab/dic/ipadic/Adj.csv ... 27210
+reading /usr/share/mecab/dic/ipadic/Noun.nai.csv ... 42
+reading /usr/share/mecab/dic/ipadic/Noun.proper.csv ... 27328
+reading /usr/share/mecab/dic/ipadic/Interjection.csv ... 252
+reading /usr/share/mecab/dic/ipadic/Postp.csv ... 146
+reading /usr/share/mecab/dic/ipadic/Noun.verbal.csv ... 12146
+reading /usr/share/mecab/dic/ipadic/Noun.csv ... 60477
+reading /usr/share/mecab/dic/ipadic/Postp-col.csv ... 91
+reading /usr/share/mecab/dic/ipadic/Adverb.csv ... 3032
+emitting double-array: 100% |###########################################| 
+reading /usr/share/mecab/dic/ipadic/matrix.def ... 1316x1316
+emitting matrix      : 100% |###########################################| 
+
+done!
+update-alternatives: using /var/lib/mecab/dic/ipadic-utf8 to provide /var/lib/mecab/dic/debian (mecab-dictionary) in auto mode
+Setting up mysql-server (8.0.36-0ubuntu0.20.04.1) ...
+Processing triggers for systemd (245.4-4ubuntu3.21) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.14) ...
+ubuntu@server:~$ cd /etc/mysql
+ubuntu@server:/etc/mysql$ ls
+conf.d  debian-start  debian.cnf  my.cnf  my.cnf.fallback  mysql.cnf  mysql.conf.d
+ubuntu@server:/etc/mysql$ cd mysql.conf.d
+ubuntu@server:/etc/mysql/mysql.conf.d$ ls
+mysql.cnf  mysqld.cnf
+ubuntu@server:/etc/mysql/mysql.conf.d$ vim mysql.cnf
+ubuntu@server:/etc/mysql/mysql.conf.d$ vim mysqld.cnf
+ubuntu@server:/etc/mysql/mysql.conf.d$ sudo vim mysqld.cnf
+ubuntu@server:/etc/mysql/mysql.conf.d$ cd ~
+ubuntu@server:~$ sudo mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.36-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    -> 
+    -> show database
+    -> exit
+    -> quit
+    -> \h
+
+For information about MySQL products and services, visit:
+   http://www.mysql.com/
+For developer information, including the MySQL Reference Manual, visit:
+   http://dev.mysql.com/
+To buy MySQL Enterprise support, training, or other products, visit:
+   https://shop.mysql.com/
+
+List of all MySQL commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+edit      (\e) Edit command with $EDITOR.
+ego       (\G) Send command to mysql server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to mysql server.
+help      (\h) Display this help.
+nopager   (\n) Disable pager, print to stdout.
+notee     (\t) Don't write into outfile.
+pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+system    (\!) Execute a system shell command.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+resetconnection(\x) Clean session context.
+query_attributes Sets string parameters (name1 value1 name2 value2 ...) for the next query to pick up.
+ssl_session_data_print Serializes the current SSL session data to stdout or file
+
+For server side help, type 'help contents'
+
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show database
+exit
+quit' at line 3
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> create database Test;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| Test               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> create user 'client'@'172.19.0.16' identified by 'password;
+    '> ;
+    '> ;
+    '> create user 'client'@'172.19.0.16' identified by 'password;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'client'@'172.19.0.16' identified by 'password' at line 4
+mysql> grant all on *.* to 'client'@'172.19.0.16';
+ERROR 1410 (42000): You are not allowed to create a user with GRANT
+mysql> create user 'client'@'172.19.0.16' identified by 'password;
+    '> ;
+    '> ;
+    '> ;
+    '> ;
+    '> ;
+    '> ;
+    '> ;
+    '> ;
+    '> 
+    '> 
+    '> 
+    '> 
+    '> 
+    '> 
+    '> exit
+    '> ;
+    '> ;
+    '> ;
+    '> quit
+    '> \h
+    '> /h
+    '> create user 'client'@'172.19.0.16' identified by 'password';
+    '> ;
+    '> \q
+    '> /q
+    '> exit
+    '> ^C
+
+^C
+mysql> create user 'client'@'172.19.0.16' identified by 'password';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> grant all on *.* to 'client'@'172.19.0.16';Connection to 43.129.215.162 closed by remote host.
+Connection to 43.129.215.162 closed.
+(base) wangshibo@MacBook ~ % ssh ubuntu@43.129.215.162
+ubuntu@43.129.215.162's password: 
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 11:27:30 AM CST
+
+  System load:  0.03              Processes:             123
+  Usage of /:   9.1% of 49.11GB   Users logged in:       1
+  Memory usage: 19%               IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 11:09:28 2024 from 172.19.0.16
+ubuntu@server:~$ sudo mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.36-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> grant all on *.* to 'client'@'172.19.0.16';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> exit
+Bye
+ubuntu@server:~$ reboot
+Failed to set wall message, ignoring: Interactive authentication required.
+Failed to reboot system via logind: Interactive authentication required.
+Failed to open initctl fifo: Permission denied
+Failed to talk to init daemon.
+ubuntu@server:~$ sudo reboot
+Connection to 43.129.215.162 closed by remote host.
+Connection to 43.129.215.162 closed.
+(base) wangshibo@MacBook ~ % ssh ubuntu@43.129.215.162
+ubuntu@43.129.215.162's password: 
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 11:30:55 AM CST
+
+  System load:  1.34              Processes:             129
+  Usage of /:   9.1% of 49.11GB   Users logged in:       0
+  Memory usage: 16%               IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 11:27:31 2024 from 101.90.151.27
+ubuntu@server:~$ ping localhost
+PING localhost (127.0.0.1) 56(84) bytes of data.
+64 bytes from localhost (127.0.0.1): icmp_seq=1 ttl=64 time=0.016 ms
+64 bytes from localhost (127.0.0.1): icmp_seq=2 ttl=64 time=0.023 ms
+64 bytes from localhost (127.0.0.1): icmp_seq=3 ttl=64 time=0.027 ms
+64 bytes from localhost (127.0.0.1): icmp_seq=4 ttl=64 time=0.034 ms
+64 bytes from localhost (127.0.0.1): icmp_seq=5 ttl=64 time=0.020 ms
+64 bytes from localhost (127.0.0.1): icmp_seq=6 ttl=64 time=0.029 ms
+64 bytes from localhost (127.0.0.1): icmp_seq=7 ttl=64 time=0.030 ms
+^C
+--- localhost ping statistics ---
+7 packets transmitted, 7 received, 0% packet loss, time 6143ms
+rtt min/avg/max/mdev = 0.016/0.025/0.034/0.005 ms
+ubuntu@server:~$ mysql -u client -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'client'@'localhost' (using password: NO)
+ubuntu@server:~$ mysql -u client -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'client'@'localhost' (using password: YES)
+ubuntu@server:~$ sudo mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.36-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| Test               |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> SELECT user, host, authentication_string, plugin, account_locked FROM mysql.user;
++------------------+-------------+------------------------------------------------------------------------+-----------------------+----------------+
+| user             | host        | authentication_string                                                  | plugin                | account_locked |
++------------------+-------------+------------------------------------------------------------------------+-----------------------+----------------+
+| client           | 172.19.0.16 | $A$005$"q%?q|fCD_q{'/Ov4stYr4yAfBMqA41FPencqoLudlyrrY9cL.FuhlXm/7 | caching_sha2_password | N              |
+| debian-sys-maint | localhost   | $A$005$T.]FaMR3~~#/p	(uEduHo1W2J77O8Jbz/kNFKxfN1QRRDBGnOLBPjP7Q2A | caching_sha2_password | N              |
+| mysql.infoschema | localhost   | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | Y              |
+| mysql.session    | localhost   | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | Y              |
+| mysql.sys        | localhost   | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | Y              |
+| root             | localhost   |                                                                        | auth_socket           | N              |
++------------------+-------------+------------------------------------------------------------------------+-----------------------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+ubuntu@server:~$ ifconfig -a
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 8500
+        inet 172.19.0.5  netmask 255.255.240.0  broadcast 172.19.15.255
+        inet6 fe80::5054:ff:fe66:4c2a  prefixlen 64  scopeid 0x20<link>
+        ether 52:54:00:66:4c:2a  txqueuelen 1000  (Ethernet)
+        RX packets 6738  bytes 6698804 (6.6 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2537  bytes 362514 (362.5 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 306  bytes 25176 (25.1 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 306  bytes 25176 (25.1 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ubuntu@server:~$ mysql -u root ip
+ERROR 1698 (28000): Access denied for user 'root'@'localhost'
+ubuntu@server:~$ 
+ubuntu@server:~$ sudo mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 8.0.36-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> exit
+Bye
+ubuntu@server:~$ reboot
+Failed to set wall message, ignoring: Interactive authentication required.
+Failed to reboot system via logind: Interactive authentication required.
+Failed to open initctl fifo: Permission denied
+Failed to talk to init daemon.
+ubuntu@server:~$ sudo reboot
+Connection to 43.129.215.162 closed by remote host.
+Connection to 43.129.215.162 closed.
+(base) wangshibo@MacBook ~ % ssh ubuntu@43.129.215.162
+kex_exchange_identification: Connection closed by remote host
+Connection closed by 43.129.215.162 port 22
+(base) wangshibo@MacBook ~ % ssh ubuntu@43.129.215.162
+ubuntu@43.129.215.162's password: 
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 11:47:14 AM CST
+
+  System load:  0.42              Processes:             130
+  Usage of /:   9.1% of 49.11GB   Users logged in:       0
+  Memory usage: 16%               IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 11:40:17 2024 from 172.19.0.16
+ubuntu@server:~$ sudo vim /etc/mysql
+ubuntu@server:~$ cd /etc/mysql
+ubuntu@server:/etc/mysql$ ls
+conf.d  debian-start  debian.cnf  my.cnf  my.cnf.fallback  mysql.cnf  mysql.conf.d
+ubuntu@server:/etc/mysql$ cd mysql.conf.d
+ubuntu@server:/etc/mysql/mysql.conf.d$ ls
+mysql.cnf  mysqld.cnf
+ubuntu@server:/etc/mysql/mysql.conf.d$ sudo vim mysqld.cnf
+ubuntu@server:/etc/mysql/mysql.conf.d$ cd ~
+ubuntu@server:~$ sudo mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.36-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'client'@'172.19.0.16' IDENTIFIED BY 'password';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IDENTIFIED BY 'password'' at line 1
+mysql> CREATE USER 'client'@'172.19.0.16' IDENTIFIED BY 'password';
+ERROR 1396 (HY000): Operation CREATE USER failed for 'client'@'172.19.0.16'
+mysql> drop user 'client'@'172.19.0.16';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> Connection to 43.129.215.162 closed by remote host.
+Connection to 43.129.215.162 closed.
+(base) wangshibo@MacBook ~ % ssh ubuntu@43.129.215.162
+ubuntu@43.129.215.162's password: 
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 11:57:28 AM CST
+
+  System load:  0.0               Processes:             126
+  Usage of /:   9.1% of 49.11GB   Users logged in:       1
+  Memory usage: 17%               IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 11:47:15 2024 from 101.90.151.27
+ubuntu@server:~$ sudo mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.36-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SELECT user, host, authentication_string, plugin, account_locked FROM mysql.user;
++------------------+-----------+------------------------------------------------------------------------+-----------------------+----------------+
+| user             | host      | authentication_string                                                  | plugin                | account_locked |
++------------------+-----------+------------------------------------------------------------------------+-----------------------+----------------+
+| debian-sys-maint | localhost | $A$005$T.]FaMR3~~#/p	(uEduHo1W2J77O8Jbz/kNFKxfN1QRRDBGnOLBPjP7Q2A | caching_sha2_password | N              |
+| mysql.infoschema | localhost | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | Y              |
+| mysql.session    | localhost | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | Y              |
+| mysql.sys        | localhost | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED | caching_sha2_password | Y              |
+| root             | localhost |                                                                        | auth_socket           | N              |
++------------------+-----------+------------------------------------------------------------------------+-----------------------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> create user 'client'@'172.19.0.16' identified by 'database';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> grant all on *.* to 'client'@'172.19.0.16';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> flush privileges;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> exit
+Bye
+ubuntu@server:~$ sudo reboot
+Connection to 43.129.215.162 closed by remote host.
+Connection to 43.129.215.162 closed.
+(base) wangshibo@MacBook ~ % ssh ubuntu@43.129.215.162
+kex_exchange_identification: Connection closed by remote host
+Connection closed by 43.129.215.162 port 22
+(base) wangshibo@MacBook ~ % ssh ubuntu@43.129.215.162
+ubuntu@43.129.215.162's password: 
+Welcome to Ubuntu 20.04 LTS (GNU/Linux 5.4.0-171-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue 19 Mar 2024 12:02:52 PM CST
+
+  System load:  1.19              Processes:             127
+  Usage of /:   9.2% of 49.11GB   Users logged in:       0
+  Memory usage: 16%               IPv4 address for eth0: 172.19.0.5
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+Last login: Tue Mar 19 11:57:28 2024 from 101.90.151.27
+ubuntu@server:~$ Connection to 43.129.215.162 closed by remote host.
+Connection to 43.129.215.162 closed.
+(base) wangshibo@MacBook ~ % 

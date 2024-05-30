@@ -1,0 +1,305 @@
+\documentclass{article}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\usepackage{ifthen}
+\usepackage[UTF8]{ctex}
+\usepackage[left=1.0cm,right=1.0cm,top=0.5cm,bottom=0.5cm]{geometry}
+\geometry{a4paper}
+\usepackage{tikz}
+\usetikzlibrary{chains}
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\usepackage{appendix} 
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{diagbox}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{pdflscape}
+\usepackage{soul}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage[most]{tcolorbox}
+\newtcolorbox{mycolorbox}[1][]{
+  sharp corners,
+  colback=white, 
+  colframe=black, 
+  coltext=blue, 
+  boxsep=5pt, 
+  left=2pt, 
+  right=2pt, 
+  top=1pt, 
+  bottom=1pt,
+  breakable,
+  #1 
+}
+\usepackage{subcaption}
+\lstset{
+    backgroundcolor=\color{gray!20},
+    basicstyle=\ttfamily,
+    commentstyle=\color{darkgray}\ttfamily,
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=10pt,
+    tabsize=4,
+    showspaces=false,
+    showtabs=false,
+    frame=single,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)},
+    breaklines=true,
+    xleftmargin=\parindent,
+    xrightmargin=\parindent,
+}
+\lstdefinestyle{sqlstyle}{
+    language=SQL,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={SELECT, FROM, WHERE, INSERT, INTO, DELETE, UPDATE, CREATE, TABLE, JOIN, INNER, LEFT, RIGHT, OUTER, ON, DROP, ALTER, ADD},
+    commentstyle=\color{green}\ttfamily,
+    stringstyle=\color{red},
+    showstringspaces=false,
+    basicstyle=\ttfamily,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=10pt,
+    tabsize=4,
+    showspaces=false,
+    showtabs=false,
+    frame=single,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)},
+    breaklines=true,
+    xleftmargin=\parindent,
+    xrightmargin=\parindent
+}
+\lstdefinestyle{dockerstyle}{
+    language=bash,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={FROM, RUN, CMD, LABEL, EXPOSE, ENV, ADD, COPY, ENTRYPOINT, VOLUME, USER, WORKDIR, ARG, ONBUILD},
+}
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={import, from, as, def, return, class, self, if, elif, else, while, for, try, except, with},
+}
+\lstdefinestyle{cstyle}{
+    language=C,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={size_t, printf}, 
+}
+\lstdefinestyle{bashstyle}{
+    language=bash,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={echo,sudo ,if, then, else, fi, for, in, do, done, echo, exit, return, function},
+    commentstyle=\color{green}\ttfamily,
+}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  
+\renewcommand{\algorithmicensure}{\textbf{Output:}}  
+\usepackage{amsmath}
+\usepackage{amsthm}
+\DeclareMathOperator{\sigm}{sigm}
+\usepackage{graphicx}
+\usepackage{float}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\usepackage{amssymb}
+\usepackage{booktabs} 
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun} 
+\title{\Huge 数据库(2)实验2}
+\author{21121178 王士博}
+\begin{document}
+\begin{center}
+    \textbf{\huge 数据库（2）实验3：HDFS分布式文件系统和SparkSQL实验}
+\end{center}
+\begin{center}
+    \textbf{\large \textbf{学号：21121178 \quad 姓名：王士博 \quad 指导教师：刘洋}}
+\end{center}
+\hrulefill
+\section{实验环境}
+\begin{itemize}
+    \item 腾讯云服务器配置：竞价实例，南京地区，标准型SA5，4核 8GB，Ubuntu 20.04。
+\end{itemize}
+\section{实验目的}
+\begin{enumerate}
+    \item 分布式文件系统HDFS。
+    \item 学会使用SparkSQL。
+\end{enumerate}
+\section{实验步骤}
+\subsection{生成安装所有依赖的镜像}
+\begin{enumerate}
+    \item 安装JDK8和JRE（其实直接安装JDK会包括JRE），使用\texttt{apt-get}安装之后需要在\texttt{.bashrc}
+    中显示给出\texttt{JAVA\_HOME}的路径，并且使用\texttt{source}应用更改。
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{java.png}
+    \end{figure}
+    \item 使用scp上传本地的Hadoop和Spark压缩包到服务器并且解压到软件包目录\texttt{/usr/local/}下
+    ，更改文件的owner为当前的用户，并且赋予所有的权限，然后cd进可执行文件使用\texttt{-version}来测试
+    Hadoop安装包的完整性以及安装的成功性，并且使用\texttt{SparkPi}来测试Spark的安装成功性(后面)。
+    \begin{figure}[H]
+        \begin{subfigure}{0.6\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{hadoopinstall.png}
+            \caption*{hadoop version}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.35\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{sparkpi.png}
+            \caption*{SparkPi}
+        \end{subfigure}
+    \end{figure}
+    \item 需要配置\texttt{core-site.xml}和\texttt{hdfs-site.xml}，\texttt{yarn-site.xml}，\texttt{mapred-site.xml}，
+    以及\texttt{slaves}文件，现将工人设置成自己的hostname以及剩下两个机器的hostname，然后删除掉
+    \texttt{known\_hosts}文件，然后将这个实例创建成镜像。
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\textwidth]{mkimage.png}
+    \end{figure}
+    
+\end{enumerate}
+\subsection{创建三个实例启动分布式文件系统HDFS}
+\begin{enumerate}
+    \item 设置三个机器\texttt{master}，\texttt{slave01}和\texttt{slave02}的\texttt{hostname}和\texttt{hosts}
+    文件，使得三个主机可以使用hostname相互无密码登陆。
+    \item 在\texttt{master}上启动HDFS，首先格式化HDFS，然后启动HDFS，使用\texttt{jps}查看
+    运行中的JVM实例也就是运行的进程。
+    \begin{figure}
+        \begin{subfigure}{0.6\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{starthadoop.png}
+            \caption*{启动HDFS}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.35\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{jps.png}
+            \caption*{jps查看运行的JVM实例}
+        \end{subfigure}
+    \end{figure}
+    \item 上传文件到HDFS，首先创建一个文件夹，然后上传一个文件到HDFS，然后在三个实例上查看查看HDFS上的文件是否同步。
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.65\textwidth]{uploadfile.png}
+    \end{figure}
+    \item 使用Spark创建一个数据库\texttt{sparktest}，并且使用\texttt{people.json}文件创建一个表
+    \texttt{tablejson}，然后使用\texttt{select * from tablejson}来查看是否创建成功。
+    \begin{figure}[H]
+        \begin{subfigure}{0.5\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{databases.png}
+            \caption*{Database}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}{0.45\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{table.png}
+            \caption*{Tablejson}
+        \end{subfigure}
+    \end{figure}
+\end{enumerate}
+\subsection{Titanic数据集的分析}
+\begin{enumerate}
+    \item 将csv转换成json格式，并且使用scp上传到服务器，使用下面的python代码实现。
+    \begin{lstlisting}[style=pythonstyle]
+data = pd.read_csv('titanic.csv')
+json_path = 'titanic.json'
+data.to_json(json_path, orient='records', lines=True)
+    \end{lstlisting}
+    \item 将\texttt{titanic.json}上传到HDFS中。
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.7\textwidth]{uploadtitanic.png}
+    \end{figure}
+    \item 使用SparkSQL读取\texttt{titanic.json}文件，然后创建一个表\texttt{titanic}
+    然后进行数据分析：
+    \begin{enumerate}
+        \item 891人当中，共多少人生还？
+        \begin{lstlisting}[style=sqlstyle]
+select count(*) from titanic where Survived=1;
+        \end{lstlisting}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.4\textwidth]{res1.png}
+        \end{figure}
+        \item 存活/未存活的男女数量及比例？
+        \begin{lstlisting}[style=sqlstyle]
+SELECT 
+    Sex,
+    Survived,
+    COUNT(*) AS Count,
+    ROUND((COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (PARTITION BY Sex)), 2) AS Percentage
+FROM 
+    titanic
+GROUP BY 
+    Sex, 
+    Survived;
+        \end{lstlisting}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\textwidth]{res2.png}
+        \end{figure}
+        \item 不同级别乘客生还人数和占总生还人数的比例？
+        \begin{lstlisting}[style=sqlstyle]
+SELECT 
+    Pclass,
+    COUNT(CASE WHEN Survived = 1 THEN 1 ELSE NULL END) AS Survived_Count,
+    COUNT(*) AS Total_Count,
+    ROUND((COUNT(CASE WHEN Survived = 1 THEN 1 ELSE NULL END) * 100.0 / COUNT(*)), 2) AS Survival_Rate
+FROM 
+    titanic
+GROUP BY 
+    Pclass;
+        \end{lstlisting}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\textwidth]{res3.png}
+        \end{figure}
+        \item 按照年龄(1,18]，(18,35]，(35,55]，(55,100]，将乘客划分为未成年人，青年人，中年人，老年人，分析四个群体的生还情况？
+        \begin{lstlisting}[style=sqlstyle]
+SELECT 
+    Age_Group,
+    COUNT(CASE WHEN Survived = 1 THEN 1 ELSE NULL END) AS Survived_Count,
+    COUNT(*) AS Total_Count,
+    ROUND((COUNT(CASE WHEN Survived = 1 THEN 1 ELSE NULL END) * 100.0 / COUNT(*)), 2) AS Survival_Rate
+FROM 
+    (SELECT 
+            CASE
+                WHEN Age <= 18 THEN 'underage'
+                WHEN Age > 18 AND Age <= 35 THEN 'young adults'
+                WHEN Age > 35 AND Age <= 55 THEN 'mid-age adults'
+                WHEN Age > 55 AND Age <= 100 THEN 'elderly'
+                ELSE 'unknown'
+            END AS Age_Group,
+            Survived
+        FROM 
+            titanic
+    ) AS AgeTable
+GROUP BY 
+    Age_Group;
+        \end{lstlisting}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\textwidth]{res4.png}
+        \end{figure}
+    \end{enumerate}
+    
+\end{enumerate}
+\section{实验结论}
+
+\end{document}

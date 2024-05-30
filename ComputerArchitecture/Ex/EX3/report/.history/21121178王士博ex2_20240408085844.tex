@@ -1,0 +1,133 @@
+\documentclass{article}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\usepackage{ifthen}
+\usepackage[UTF8]{ctex}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\geometry{a4paper}
+\usepackage{tikz}
+\usetikzlibrary{chains}
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\usepackage{appendix} 
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{diagbox}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{pdflscape}
+\usepackage{soul}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage[most]{tcolorbox}
+\newtcolorbox{mycolorbox}[1][]{
+  sharp corners,
+  colback=white, 
+  colframe=black, 
+  coltext=blue, 
+  boxsep=5pt, 
+  left=2pt, 
+  right=2pt, 
+  top=1pt, 
+  bottom=1pt,
+  breakable,
+  #1 
+}
+\usepackage{subcaption}
+\lstset{
+    backgroundcolor=\color{gray!20},
+    basicstyle=\ttfamily,
+    commentstyle=\color{darkgray}\ttfamily,
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=10pt,
+    tabsize=4,
+    showspaces=false,
+    showtabs=false,
+    frame=single,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)},
+    xleftmargin=\parindent,
+    xrightmargin=\parindent,
+}
+\lstdefinestyle{dockerstyle}{
+    language=bash,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={FROM, RUN, CMD, LABEL, EXPOSE, ENV, ADD, COPY, ENTRYPOINT, VOLUME, USER, WORKDIR, ARG, ONBUILD},
+}
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={import, from, as, def, return, class, self, if, elif, else, while, for, try, except, with},
+}
+\lstdefinestyle{cstyle}{
+    language=C,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={size_t, printf},
+}
+\lstdefinestyle{bashstyle}{
+    language=bash,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={if, then, else, fi, for, in, do, done, echo, exit, return, function},
+    commentstyle=\color{green}\ttfamily,
+}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  
+\renewcommand{\algorithmicensure}{\textbf{Output:}}  
+\usepackage{amsmath}
+\usepackage{amsthm}
+\DeclareMathOperator{\sigm}{sigm}
+\usepackage{graphicx}
+\usepackage{float}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\usepackage{amssymb}
+\usepackage{booktabs} 
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun} 
+\title{\Huge CUDA\&CUDA和OpenMP混合编程实验报告}
+\author{21121178 王士博}
+\begin{document}
+\maketitle
+\section{实验环境}
+\textbf{Windows11 Professional 22H2 x64：} \\
+\\
+\indent \indent \indent \begin{minipage}[H]{0.7\textwidth}
+    \begin{itemize}
+        \item \textbf{处理器：}Intel(R) Core(TM) i7-11800H CPU @ 4.60GHz 16线程
+        \item \textbf{内存：}32.0 GB
+        \item \textbf{显卡：}NVIDIA GeForce RTX 3070
+        \item \textbf{显卡驱动版本：}11.6
+        \item \textbf{编程语言：}C++
+        \item \textbf{编译器：}nvcc
+        \item \textbf{编程平台：}Visual Studio 2019
+    \end{itemize}
+\end{minipage}
+\section{实验目的}
+\begin{enumerate}
+    \item 了解CUDA的安装方式和注意问题。通过简洁明了地列出CUDA安装的步骤和关键注意事项，目的在于为CUDA新用户提供一个清晰、易于遵循的安装指南。这不仅帮助用户高效完成CUDA环境的配置，也旨在通过分享实践经验，降低并行编程技术的入门门槛，尤其是对于那些首次尝试在个人计算机上进行CUDA编程的用户。
+    \item 使用CUDA或者CUDA和OpenMP混合编程实现矩阵乘法并且根据自己的电脑配置进行优化。现矩阵乘法的CUDA版本以及可能的OpenMP-CUDA混合编程版本，并基于个人机器的具体配置，从多个角度对比其加速比。此实验目的在于探究CUDA和OpenMP-CUDA混合编程技术在执行复杂运算任务时的性能差异，以及评估在不同计算资源配置下的执行效率。通过实验，旨在深入理解GPU并行计算的优势与局限，以及混合编程模式在提升计算性能方面的潜力，同时，通过附上源码，增加实验的可重复性和透明度，为并行计算领域的学习者和研究者提供参考。
+\end{enumerate}
+\section{实验步骤}
+\subsection{CUDA的安装}
+\begin{enumerate}
+    \item \textbf{下载CUDA Toolkit：}
+    \
+    首先，访问NVIDIA官网，下载适用于自己操作系统的CUDA Toolkit。CUDA Toolkit是一个用于开发CUDA程序的软件包，包含了CUDA编译器、CUDA库、CUDA工具等。下载地址：\url{https://developer.nvidia.com/cuda-downloads}。
+\end{enumerate}
+\section{实验感想}
+
+\newpage
+\appendix
+\section{源代码}
+\end{document}

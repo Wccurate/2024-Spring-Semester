@@ -1,0 +1,13 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     pi_omp3
+relocations:
+  - { offsetInCU: 0xFB, offset: 0xFB, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003D74, symSize: 0xB8 }
+  - { offsetInCU: 0x103, offset: 0x103, size: 0x8, addend: 0x0, symName: _num_steps, symObjAddr: 0x188, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offsetInCU: 0x8F, offset: 0x8F, size: 0x8, addend: 0x0, symName: _num_steps, symObjAddr: 0x188, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offsetInCU: 0xA1, offset: 0xA1, size: 0x8, addend: 0x0, symName: _step, symObjAddr: 0xB40, symBinAddr: 0x100008008, symSize: 0x0 }
+  - { offsetInCU: 0xBD, offset: 0xBD, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003D74, symSize: 0xB8 }
+  - { offsetInCU: 0xC5, offset: 0xC5, size: 0x8, addend: 0x0, symName: _main._omp_fn.0, symObjAddr: 0xB8, symBinAddr: 0x100003E2C, symSize: 0xD0 }
+  - { offsetInCU: 0xE2, offset: 0xE2, size: 0x8, addend: 0x0, symName: _main._omp_fn.0, symObjAddr: 0xB8, symBinAddr: 0x100003E2C, symSize: 0xD0 }
+  - { offsetInCU: 0xEA, offset: 0xEA, size: 0x8, addend: 0x0, symName: _num_steps, symObjAddr: 0x188, symBinAddr: 0x100008000, symSize: 0x0 }
+...

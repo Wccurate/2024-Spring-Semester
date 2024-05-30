@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{color}
+\usepackage{soul}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\usepackage{ifthen}
+\usepackage[UTF8]{ctex}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\geometry{a4paper}
+\usepackage{tikz}
+\usetikzlibrary{chains}
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+\usepackage{appendix} 
+\usepackage{lipsum}
+\usepackage{listings}
+\usepackage{diagbox}
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{pdflscape}
+\usepackage{soul}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage[most]{tcolorbox}
+\newtcolorbox{mycolorbox}[1][]{
+  sharp corners,
+  colback=white, 
+  colframe=black, 
+  coltext=blue, 
+  boxsep=5pt, 
+  left=2pt, 
+  right=2pt, 
+  top=1pt, 
+  bottom=1pt,
+  breakable,
+  #1 
+}
+\usepackage{subcaption}
+\lstset{
+    backgroundcolor=\color{gray!20},
+    basicstyle=\ttfamily,
+    commentstyle=\color{darkgray}\ttfamily,
+    stringstyle=\color{red},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=10pt,
+    tabsize=4,
+    showspaces=false,
+    showtabs=false,
+    frame=single,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    escapeinside={\%*}{*)},
+    xleftmargin=\parindent,
+    xrightmargin=\parindent,
+}
+\lstdefinestyle{dockerstyle}{
+    language=bash,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={FROM, RUN, CMD, LABEL, EXPOSE, ENV, ADD, COPY, ENTRYPOINT, VOLUME, USER, WORKDIR, ARG, ONBUILD},
+}
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={import, from, as, def, return, class, self, if, elif, else, while, for, try, except, with},
+}
+\lstdefinestyle{cstyle}{
+    language=C,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={size_t, printf}, 
+}
+\lstdefinestyle{bashstyle}{
+    language=bash,
+    keywordstyle=\color{blue}\bfseries,
+    morekeywords={echo,sudo ,if, then, else, fi, for, in, do, done, echo, exit, return, function},
+    commentstyle=\color{green}\ttfamily,
+}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}  
+\renewcommand{\algorithmicensure}{\textbf{Output:}}  
+\usepackage{amsmath}
+\usepackage{amsthm}
+\DeclareMathOperator{\sigm}{sigm}
+\usepackage{graphicx}
+\usepackage{float}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
+\usepackage{amssymb}
+\usepackage{booktabs} 
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{caption}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun} 
+\title{\Huge 数据库(2)实验2}
+\author{21121178 王士博}
+\begin{document}
+\begin{center}
+    \textbf{\huge 数据库（2）实验1：云服务器部署Mysql}
+\end{center}
+\begin{center}
+    \textbf{\large \textbf{学号：21121178 \quad 姓名：王士博 \quad 指导教师：刘洋}}
+\end{center}
+\hrulefill
+\section{实验环境}
+\begin{itemize}
+    \item 云平台：腾讯云
+    \item 云平台配置：香港地区，CPU 8核心，内存 16GB，Ubuntu 20.04。
+\end{itemize}
+\section{实验目的}
+\section{实验步骤}
+\subsection{创建一个包含docker和kubernetes的镜像}
+先购买一个实例，然后通过如下的命令安装docker，这下面的指令包括了三部分：
+\begin{enumerate}
+    \item 安装三个证书工具：\texttt{ca-certificates}，\texttt{curl}，\texttt{gnupg}，这些证书
+    工具用于下载所需要的证书，处理所需要的证书和使用一些加密技术。
+    \item 下载Docker的GPG公钥：使用Docker的公钥对下载的安装包进行验证，/etc/apt/keyrings/
+    目录转门放置apt下载包的公钥环，用于验证安装包。
+    \item 下载Docker，并且执行Docker hello-world测试Docker的拉取镜像和创建实例的能力是否正确依次来验证
+    Docker是否安装成功。
+\end{enumerate}
+其中下载Docker包括下面几个步骤，更新应用商店确保下载的所有内容都是最新的，使用下载的证书工具下载Docker的GPG公钥，
+最后下载Docker的指定版本并且运行hello-world测试，安装结果如图\ref{fig:dockerinstall}结果如图\ref{fig:helloworld}
+\begin{lstlisting}[style=bashstyle]
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+apt list -a docker-ce
+sudo apt-get install docker-ce=5:19.03.10~3-0~ubuntu-focal
+sudo docker run hello-world
+\end{lstlisting}
+实验结果如图所示： \\
+\noindent
+\begin{minipage}{0.45\textwidth}
+    \begin{figure}[H]
+        \includegraphics[width=\textwidth]{dockerhelloworld.png}
+        \caption{docker安装}
+        \label{fig:dockerinstall}
+    \end{figure}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1.0\textwidth]{changeorigin.png}
+        \caption{docker hello-world}
+        \label{fig:helloworld}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1.0\textwidth]{kubernetesverify.png}
+        \caption{kubernetes-verification}
+        \label{fig:kubernetesverification}
+    \end{figure}
+\end{minipage}
+
+\subsection{创建kubernetes集群}
+\indent 通过上面导出的镜像来创建下面三个实例，通过修
+改\texttt{/etc/hostname}和\texttt{/etc/hosts}文件改变三台主机的主机名
+以及配置IP地址和hostname的映射。
+然后在Boss实例上开启kubernetes集群，然后在fw1和fw2上加入集群。，使用如下指令开启kubernetes集群：
+\begin{lstlisting}[style=bashstyle]
+sudo kubeadm init --apiserver-advertise-address=172.19.0.14 --image-repository registry.aliyuncs.com/google_containers --service-cidr=10.96.0.0/12  --pod-network-cidr=10.244.0.0/16
+\end{lstlisting}
+\section{编程及结果分析}
+\section{实验感想}
+\newpage
+\appendix
+\section{附录}
+\end{document}
