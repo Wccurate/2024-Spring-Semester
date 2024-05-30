@@ -1,0 +1,60 @@
+ComputerVision/
+CompilerPrinciples/EX/
+ComputerArchitecture/Seminar/
+ComputerArchitecture/Ex/EX4/
+# LaTeX intermediate and output files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.dvi
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.maf
+*.mtc*
+*.nav
+*.nlo
+*.out
+*.pdfsync
+*.ps
+*.snm
+*.synctex(busy)
+*.synctex.gz
+*.toc
+*.vrb
+
+# LaTeX Editors temporary files
+._*
+.fuse*
+*.backup
+*.bak
+*.synctex.gz
+*~ 
+
+# Other files
+*.acn
+*.acr
+*.alg
+*.glsdefs
+*.mw
+
+# Output of latexmk
+*.fdb_latexmk
+*.fls
+*.run.xml
+
+# Xelatex auxiliary files
+xelatex.out
+
+# Fonts
+*.tfm
+*.pk
+*.mf
